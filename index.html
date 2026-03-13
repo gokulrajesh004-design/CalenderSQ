@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartQ 2026 — Experience Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="view-calendar">
+  <div class="accent-strip">
+    <div style="background:var(--campaign)"></div><div style="background:var(--buzzar)"></div>
+    <div style="background:var(--gameday)"></div><div style="background:var(--truck)"></div>
+    <div style="background:var(--purpose)"></div>
+  </div>
+  <header>
+    <div>
+      <div class="eyebrow">Powered by SmartQ · Compass Group</div>
+      <h1>Themed Monthly<br><span>Experience</span></h1>
+    </div>
+    <div>
+      <div class="year-badge">2026</div>
+      <div class="tagline">A 5-layer engagement framework redefining every office break, every month.</div>
+    </div>
+  </header>
+  <div class="legend">
+    <div class="legend-item"><div class="ldot" style="background:var(--campaign)"></div>L1 — Monthly Campaign <span class="lsub">Every month</span></div>
+    <div class="legend-item"><div class="ldot" style="background:var(--buzzar)"></div>L2 — Buzzar · Food Flea Market <span class="lsub">Quarterly</span></div>
+    <div class="legend-item"><div class="ldot" style="background:var(--gameday)"></div>L3 — Game Days <span class="lsub">IPL · F1 · 2×</span></div>
+    <div class="legend-item"><div class="ldot" style="background:var(--truck)"></div>L4 — Food Truck <span class="lsub">Quarterly</span></div>
+    <div class="legend-item"><div class="ldot" style="background:var(--purpose)"></div>L5 — Purpose Led Pop-Up <span class="lsub">4× a year</span></div>
+  </div>
+  <div class="calendar">
+    <div class="grid-outer">
+      <div class="label-col" id="labelCol">
+        <div class="lbl lbl-hdr">Layer</div>
+        <div class="lbl lbl-r1" data-layer="Monthly Campaign" data-color="#F5A623" data-desc="Every month has a themed campaign tied to a cultural moment, season or occasion — shaping the entire cafeteria menu, décor and energy for that month.">Monthly<br>Campaign</div>
+        <div class="lbl lbl-r2" data-layer="Buzzar" data-color="#E8534A" data-desc="A quarterly food flea market inside the office — multiple vendors, artisan products and discovery-led eating. Think pop-up market meets cafeteria.">Buzzar</div>
+        <div class="lbl lbl-r3" data-layer="Game Days" data-color="#3DB87A" data-desc="2 times a year, the cafeteria transforms around a major sporting event — themed food, non-food engagement activities and team energy that brings everyone together.">Game<br>Days</div>
+        <div class="lbl lbl-r4" data-layer="Food Truck" data-color="#9B59B6" data-desc="A quarterly food truck rolls into the office courtyard, bringing a completely different cuisine experience — fresh, exciting and outside the daily routine.">Food<br>Truck</div>
+        <div class="lbl lbl-r5" data-layer="Purpose Led Pop-Up" data-color="#C0397A" data-desc="4 times a year, a curated marketplace gives a platform to purpose-driven entrepreneurs — local makers, women-led ventures, eco brands and differently abled founders.">Purpose<br>Led<br>Pop-Up</div>
+      </div>
+      <div class="months-grid" id="monthsGrid"></div>
+    </div>
+  </div>
+  <footer>
+    <div class="f-mono">Redefining the Office Break</div>
+    <div class="f-brand">SmartQ · 2026</div>
+    <div class="f-mono">5-Layer Engagement Framework</div>
+  </footer>
+</div>
+
+<div id="view-detail">
+  <div class="detail-topbar" id="dTopbar"><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="detail-nav">
+    <button class="back-btn" id="backBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Calendar
+    </button>
+    <span class="detail-bc" id="dBc"></span>
+  </div>
+  <div class="detail-hero">
+    <div class="detail-badge" id="dBadge"></div>
+    <div class="detail-emoji" id="dEmoji"></div>
+    <div class="detail-title" id="dTitle"></div>
+    <div class="detail-sub" id="dSub"></div>
+  </div>
+  <div class="detail-body">
+    <div class="dsec">
+      <h3>What &amp; Why</h3>
+      <p id="dWhat"></p>
+      <div class="detail-tags" id="dTags"></div>
+    </div>
+    <div class="dsec">
+      <h3>What to Expect</h3>
+      <div class="format-list" id="dFormat"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tip">
+  <div class="t-bar" id="tBar"></div>
+  <div class="t-head"><span class="t-ico" id="tIco"></span><span class="t-title" id="tTitle"></span></div>
+  <div class="t-desc" id="tDesc"></div>
+  <div class="t-cta" id="tCta"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
