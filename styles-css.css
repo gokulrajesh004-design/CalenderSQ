@@ -1,0 +1,223 @@
+:root {
+  --gold: #F5A623;
+  --cream: #1a1208;
+  --campaign: #F5A623;
+  --buzzar: #E8534A;
+  --gameday: #3DB87A;
+  --truck: #9B59B6;
+  --purpose: #C0397A;
+  --hdr-h: 52px;
+  --row1-h: 84px;
+  --row2-h: 84px;
+  --row3-h: 84px;
+  --row4-h: 84px;
+  --row5-h: 84px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { background: #fff; color: var(--cream); font-family: 'DM Sans', sans-serif; }
+
+/* ── VIEWS ── */
+#view-calendar, #view-detail {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  transition: opacity .4s ease, transform .4s ease;
+}
+#view-calendar { opacity: 1; pointer-events: all; transform: translateX(0); }
+#view-detail   { opacity: 0; pointer-events: none; transform: translateX(40px); background: #fff; }
+body.detail-open #view-calendar { opacity: 0; pointer-events: none; transform: translateX(-40px); }
+body.detail-open #view-detail   { opacity: 1; pointer-events: all; transform: translateX(0); }
+
+/* ── ACCENT STRIP ── */
+.accent-strip { height: 4px; display: flex; }
+.accent-strip div { flex: 1; }
+
+/* ── HEADER ── */
+header {
+  padding: 40px 48px 28px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-bottom: 1px solid rgba(245,166,35,.2);
+}
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 4px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+}
+header h1 { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; line-height: 1; }
+header h1 span { color: var(--gold); font-style: italic; }
+.year-badge {
+  font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900;
+  color: rgba(245,166,35,.22); line-height: 1; letter-spacing: -4px;
+}
+.tagline { font-size: 11px; color: rgba(26,18,8,.45); max-width: 220px; line-height: 1.6; margin-top: 4px; margin-left: auto; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 6px; padding: 14px 48px;
+  border-bottom: 1px solid rgba(26,18,8,.08); flex-wrap: wrap;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 11px; border-radius: 20px;
+  font-size: 10.5px; font-weight: 600;
+  background: rgba(26,18,8,.05); border: 1px solid rgba(26,18,8,.10);
+}
+.ldot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.lsub { font-size: 9.5px; color: rgba(26,18,8,.4); font-weight: 400; }
+
+/* ── CALENDAR ── */
+.calendar { padding: 24px 48px 44px; }
+.grid-outer {
+  display: grid; grid-template-columns: 88px 1fr;
+  border: 1px solid rgba(26,18,8,.12); border-radius: 14px; overflow: hidden;
+}
+
+/* ── LABEL COLUMN ── */
+.label-col {
+  display: flex; flex-direction: column;
+  background: rgba(26,18,8,.03); border-right: 1px solid rgba(26,18,8,.12);
+}
+.lbl {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 1.2px;
+  text-transform: uppercase; font-weight: 600;
+  padding: 0 6px; flex-shrink: 0;
+  border-bottom: 1px solid rgba(26,18,8,.08);
+  transition: background .2s; cursor: default;
+}
+.lbl-hdr { height: var(--hdr-h); background: rgba(26,18,8,.04); color: rgba(26,18,8,.35); }
+.lbl-r1  { height: var(--row1-h); color: var(--campaign); border-left: 3px solid var(--campaign); }
+.lbl-r2  { height: var(--row2-h); color: var(--buzzar);   border-left: 3px solid var(--buzzar);   }
+.lbl-r3  { height: var(--row3-h); color: var(--gameday);  border-left: 3px solid var(--gameday);  }
+.lbl-r4  { height: var(--row4-h); color: var(--truck);    border-left: 3px solid var(--truck);    }
+.lbl-r5  { height: var(--row5-h); color: var(--purpose);  border-left: 3px solid var(--purpose);  border-bottom: none; }
+.lbl-r1:hover { background: rgba(245,166,35,.12); }
+.lbl-r2:hover { background: rgba(232,83,74,.12);  }
+.lbl-r3:hover { background: rgba(61,184,122,.12); }
+.lbl-r4:hover { background: rgba(155,89,182,.12); }
+.lbl-r5:hover { background: rgba(192,57,122,.12); }
+
+/* ── MONTHS GRID ── */
+.months-grid { display: grid; grid-template-columns: repeat(12, 1fr); }
+.month-col { display: flex; flex-direction: column; border-right: 1px solid rgba(26,18,8,.08); }
+.month-col:last-child { border-right: none; }
+
+.mhdr {
+  height: var(--hdr-h);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-bottom: 1px solid rgba(26,18,8,.08); background: rgba(26,18,8,.04); flex-shrink: 0;
+}
+.mname { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; }
+.mnum  { font-family: 'DM Mono', monospace; font-size: 8px; color: rgba(26,18,8,.38); letter-spacing: 1px; }
+
+/* ── CELLS ── */
+.cell {
+  flex-shrink: 0; display: flex; align-items: stretch;
+  padding: 5px; border-bottom: 1px solid rgba(26,18,8,.07);
+}
+.cell:last-child { border-bottom: none; }
+.cell-r1 { height: var(--row1-h); background: rgba(245,166,35,.05); border-bottom: 2px solid rgba(245,166,35,.18); }
+.cell-r2 { height: var(--row2-h); background: rgba(232,83,74,.03);  }
+.cell-r3 { height: var(--row3-h); background: rgba(61,184,122,.03); }
+.cell-r4 { height: var(--row4-h); background: rgba(155,89,182,.03); }
+.cell-r5 { height: var(--row5-h); background: rgba(192,57,122,.03); }
+
+/* ── CARDS ── */
+.card {
+  width: 100%; border-radius: 6px; padding: 6px;
+  display: flex; flex-direction: column; gap: 3px;
+  cursor: pointer; transition: filter .15s, transform .15s;
+}
+.card:hover { filter: brightness(1.08); transform: scale(1.02); }
+.card-campaign { background: rgba(245,166,35,.13); border: 1px solid rgba(245,166,35,.35); }
+.card-buzzar   { background: rgba(232,83,74,.13);  border: 1px solid rgba(232,83,74,.38);  }
+.card-gameday  { background: rgba(61,184,122,.13); border: 1px solid rgba(61,184,122,.38); }
+.card-truck    { background: rgba(155,89,182,.13); border: 1px solid rgba(155,89,182,.38); }
+.card-purpose  { background: rgba(192,57,122,.13); border: 1px solid rgba(192,57,122,.45); }
+
+.cico   { font-size: 11px; line-height: 1; flex-shrink: 0; }
+.ctitle { font-size: 8.5px; font-weight: 700; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.csub   { font-size: 7.5px; line-height: 1.3; color: rgba(26,18,8,.52); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-campaign .ctitle { color: #b87300; }
+.card-buzzar   .ctitle { color: #c03030; }
+.card-gameday  .ctitle { color: #1e8c52; }
+.card-truck    .ctitle { color: #6d2fa8; }
+.card-purpose  .ctitle { color: #98175a; }
+
+.empty-wrap { width: 100%; display: flex; align-items: center; justify-content: center; opacity: .2; }
+.edot { width: 5px; height: 5px; border-radius: 50%; background: rgba(26,18,8,.3); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 18px 48px 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(245,166,35,.15);
+}
+.f-mono  { font-family: 'DM Mono', monospace; font-size: 9.5px; color: rgba(26,18,8,.38); letter-spacing: 2px; text-transform: uppercase; }
+.f-brand { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--gold); }
+
+/* ── DETAIL PAGE ── */
+.detail-topbar { height: 4px; display: flex; flex-shrink: 0; }
+.detail-topbar span { flex: 1; }
+
+.detail-nav {
+  padding: 18px 48px; display: flex; align-items: center; gap: 16px;
+  border-bottom: 1px solid rgba(26,18,8,.08);
+}
+.back-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: 1px solid rgba(26,18,8,.15); border-radius: 8px;
+  padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--cream);
+  cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .2s; flex-shrink: 0;
+}
+.back-btn:hover { background: rgba(26,18,8,.05); }
+.back-btn svg { width: 14px; height: 14px; }
+.detail-bc { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(26,18,8,.35); }
+
+.detail-hero { padding: 44px 48px 32px; border-bottom: 1px solid rgba(26,18,8,.07); }
+.detail-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: .5px; margin-bottom: 16px; }
+.detail-emoji  { font-size: 48px; line-height: 1; margin-bottom: 14px; }
+.detail-title  { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; line-height: 1.1; margin-bottom: 8px; }
+.detail-sub    { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(26,18,8,.38); }
+
+.detail-imgs { display: none; }
+
+.detail-body { padding: 36px 48px 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.dsec h3 { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(26,18,8,.32); margin-bottom: 14px; }
+.dsec p  { font-size: 14px; line-height: 1.8; color: rgba(26,18,8,.72); }
+
+.detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.dtag {
+  padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  background: rgba(26,18,8,.06); border: 1px solid rgba(26,18,8,.1); color: rgba(26,18,8,.6);
+}
+
+.format-list { display: flex; flex-direction: column; gap: 10px; }
+.format-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-radius: 10px;
+  background: rgba(26,18,8,.03); border: 1px solid rgba(26,18,8,.07);
+}
+.fmat-ico { font-size: 18px; flex-shrink: 0; line-height: 1; }
+.fmat-body strong { display: block; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.fmat-body span   { font-size: 11px; color: rgba(26,18,8,.5); line-height: 1.4; }
+
+/* ── TOOLTIP ── */
+#tip {
+  position: fixed;
+  width: 190px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.1);
+  pointer-events: none;
+  display: none;
+  z-index: 2147483647;
+}
+#tip .t-bar   { height: 3px; border-radius: 2px; margin-bottom: 9px; }
+#tip .t-head  { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+#tip .t-ico   { font-size: 16px; line-height: 1; flex-shrink: 0; }
+#tip .t-title { font-size: 11px; font-weight: 700; color: #1a1208; line-height: 1.3; }
+#tip .t-desc  { font-size: 9.5px; color: rgba(26,18,8,.6); line-height: 1.55; }
+#tip .t-cta   { margin-top: 7px; font-size: 8px; font-weight: 600; color: rgba(26,18,8,.35); letter-spacing: .5px; }
